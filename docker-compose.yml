@@ -1,0 +1,31 @@
+version: '3.3'
+services:
+  freepbx:
+    image: crazyquark/freepbx:15
+    container_name: freepbx
+    volumes:
+      - ./backup:/backup
+      - ./recordings:/var/spool/asterisk/monitor
+      - freepbx_db:/var/lib/mysql
+      - freepbx_config:/etc
+      - freepbx_html:/var/www
+      - freepbx_usr:/usr
+    ports:
+      - 9090:80 
+      - 3306:3306
+      - 5060:5060/udp
+      - 5061:5061
+      - 5160:5160/udp
+      - 5161:5161
+      - 4569:4569
+      - 18000-18030:18000-18030/udp
+#    devices:
+#      - /dev/ttyUSB_V:/dev/ttyUSB1
+#      - /dev/ttyUSB_D:/dev/ttyUSB2
+    restart: unless-stopped
+
+volumes:
+  freepbx_db:
+  freepbx_config:
+  freepbx_html:
+  freepbx_usr:
