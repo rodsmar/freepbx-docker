@@ -4,6 +4,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV ASTERISK_VERSION=16.16.1
 
+CMD /run/test.sh
+
 RUN apt-get update && apt-get install -y curl wget
 
 ### PHP
